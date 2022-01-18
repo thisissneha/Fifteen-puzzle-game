@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Merienda', cursive;
+}
+
+body {
+    background-color: #f2f2ef;
+}
+
+.font-size {
+    font-size: 30px;
+    text-align: center;
+}
+
+.game-wrapper-class {
+    margin: auto;
+    width: 524px;
+}
+
+.list-styling {
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.moves,
+.time,
+.start,
+.reset,
+.pause {
+    text-align: center;
+    border-radius: 5px;
+    padding: 6px 20px;
+    margin: 4px 8px;
+    text-decoration: none;
+}
+
+.moves,
+.time {
+    background-color: rgba(158, 170, 255, 0.37);
+}
+
+.reset,
+.start,
+.pause {
+    background-color: rgba(18, 73, 7, 0.17);
+    cursor: pointer;
+}
+
+.pause {
+    display: none;
+}
+
+.moves-count,
+.timer {
+    display: block;
+    text-align: center;
+}
+
+.game {
+    height: 354px;
+    width: 400px;
+    background-color: rgba(0, 119, 24, 0.29);
+    margin: 15px auto;
+    padding: 6px 0px;
+    border-radius: 10px;
+}
+
+.row-cell {
+    background-color: rgba(255, 255, 165, 1);
+    width: 21%;
+    height: 100%;
+    border-radius: 6px;
+    margin: 0px 4px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 72px;
+    /* transition: all 0.2s ease-out 0s; */
+    cursor: pointer;
+}
+
+.game-instruction {
+    margin: 40px 28px;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+}
+
+.table-row {
+    height: 76px;
+    display: flex;
+    border-radius: 6px;
+    margin: 10px 0px;
+    justify-content: center;
+}
+
+.game-logo {
+    padding: 6px 62px;
+    padding-bottom: 36px;
+}
+
+.logo {
+    height: 82px;
+}
+
+.header-class {
+    display: flex;
+    justify-content: space-between;
+    margin: 26px;
+    margin-top: 42px;
+}
+
+.play-box {
+    width: 90%;
+    margin: auto;
+}
+
+.footer-class {
+    margin: 32px 32px;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.margin-bottom {
+    margin-bottom: 14px;
+}
