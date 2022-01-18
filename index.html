@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15 Puzzle Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="game-wrapper-class">
+        <header class="header-class">
+            <section>
+                <ul class="list-styling">
+                    <li class="moves">Moves<span class="moves-count">0</span></li>
+                    <li class="time">Time<span class="timer" id="time">00:00</span></li>
+                    <li class="start" id="start">Start</li>
+                    <li class="pause" id="pause">Pause</li>
+                    <li class="reset" id="reset">Reset</li>
+                </ul>
+            </section>
+            <section class="heading">
+                <h2 class="font-size">FIFTEEN PUZZLE
+                    <br>
+                    GAME
+                </h2>
+            </section>
+        </header>
+        <section class="play-box">
+            <div class="game" id="table" onclick="playGame()">
+                <div class="table-row">
+                    <div class="row-cell" id="row-cell-1">1</div>
+                    <div class="row-cell" id="row-cell-2">2</div>
+                    <div class="row-cell" id="row-cell-3">3</div>
+                    <div class="row-cell" id="row-cell-4">4</div>
+                </div>
+                <div class="table-row">
+                    <div class="row-cell" id="row-cell-5">5</div>
+                    <div class="row-cell" id="row-cell-6">6</div>
+                    <div class="row-cell" id="row-cell-7">7</div>
+                    <div class="row-cell" id="row-cell-8">8</div>
+                </div>
+                <div class="table-row">
+                    <div class="row-cell" id="row-cell-9">9</div>
+                    <div class="row-cell" id="row-cell-10">10</div>
+                    <div class="row-cell" id="row-cell-11">11</div>
+                    <div class="row-cell" id="row-cell-12">12</div>
+                </div>
+                <div class="table-row">
+                    <div class="row-cell" id="row-cell-13">13</div>
+                    <div class="row-cell" id="row-cell-14">14</div>
+                    <div class="row-cell" id="row-cell-15">15</div>
+                    <div class="row-cell" id="row-cell-0"></div>
+                </div>
+            </div>
+            <article class="game-instruction">
+                <h3 class="margin-bottom">INSTRUCTIONS</h3>
+                <p>Move tiles in grid to order them from <strong>1 to 15.</strong> To move a tile you can click on it or
+                    use your
+                    <strong>arrow
+                        keys</strong>. Press <strong>ESC</strong> to pause game.</p>
+            </article>
+            <hr>
+        </section>
+        <footer class="footer-class">
+            <div class="game-logo">
+                <img src="img/game-logo.png" alt="Game Logo" class="logo">
+                <strong>15teen Puzzle Game</strong>
+            </div>
+            <p class="copyright">Designed by <strong>Sneha Goel</strong></p>
+        </footer>
+    </div>
+</body>
+<script src="js/index.js"></script>
+
+</html>
