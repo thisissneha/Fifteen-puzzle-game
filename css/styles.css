@@ -27,10 +27,7 @@ body {
 }
 
 .moves,
-.time,
-.start,
-.reset,
-.pause {
+.time {
     text-align: center;
     border-radius: 5px;
     padding: 6px 20px;
@@ -38,16 +35,30 @@ body {
     text-decoration: none;
 }
 
+.btn {
+    text-align: center;
+    border-radius: 5px;
+    padding: 8px 28px;
+    margin: 4px 8px;
+    background-color: rgba(18, 73, 7, 0.17);
+    cursor: pointer;
+    border: none;
+}
+
+.play {
+    background-color: black;
+    height: 354px;
+    width: 400px;
+    margin: 0px 34px;
+    padding: 6px 0px;
+    border-radius: 10px;
+    position: absolute;
+    opacity: 0.7;
+}
+
 .moves,
 .time {
     background-color: rgba(158, 170, 255, 0.37);
-}
-
-.reset,
-.start,
-.pause {
-    background-color: rgba(18, 73, 7, 0.17);
-    cursor: pointer;
 }
 
 .pause {
@@ -69,16 +80,26 @@ body {
     border-radius: 10px;
 }
 
-.row-cell {
-    background-color: rgba(255, 255, 165, 1);
-    width: 21%;
-    height: 100%;
+.pos-row-cell {
+    background-color: rgb(255, 255, 165);
+    width: 84px;
+    height: 75px;
     border-radius: 6px;
     margin: 0px 4px;
     font-size: 30px;
     text-align: center;
     line-height: 72px;
-    /* transition: all 0.2s ease-out 0s; */
+    cursor: pointer;
+}
+
+.row-cell {
+    background-color: rgb(255, 255, 165);
+    width: 84px;
+    height: 75px;
+    border-radius: 6px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 72px;
     cursor: pointer;
 }
 
@@ -88,12 +109,13 @@ body {
     padding-bottom: 20px;
 }
 
-.table-row {
+.game-row {
     height: 76px;
     display: flex;
     border-radius: 6px;
     margin: 10px 0px;
     justify-content: center;
+    cursor: pointer;
 }
 
 .game-logo {
@@ -115,6 +137,7 @@ body {
 .play-box {
     width: 90%;
     margin: auto;
+    cursor: pointer;
 }
 
 .footer-class {
