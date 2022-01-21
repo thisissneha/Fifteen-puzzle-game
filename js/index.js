@@ -22,9 +22,9 @@ document.getElementById("pause").addEventListener("click", pauseGame);
 // Calculate Time taken by user
 let gameTime = null;
 let timer = 0;
+let minutes, seconds;
 
 function startTimer(duration, display) {
-    let minutes, seconds;
 
     gameTime = setInterval(function () {
         minutes = parseInt(timer / 60, 10);
@@ -34,6 +34,7 @@ function startTimer(duration, display) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         display.textContent = minutes + ":" + seconds;
+        window.localStorage.setItem('Time', (display.textContent));
 
         if (++timer < 0) {
             timer = duration;
@@ -93,6 +94,7 @@ function swapValues(clickedID) {
             userWin();
         } else {
             document.getElementById("moves-count").textContent = ++count;
+            window.localStorage.setItem('Moves', (document.getElementById("moves-count").textContent));
         }
     }
 }
@@ -119,10 +121,13 @@ function swapElements(obj1, obj2) {
     let value = obj1.id;
     positionMap.set(key, value);
 
+
     // adding obj2 in map
     let key1 = obj2.parentNode.id;
     let value1 = obj2.id;
     positionMap.set(key1, value1);
+
+    window.localStorage.setItem('Position', JSON.stringify([...positionMap]));
 
     let one = document.getElementById("row-cell-0");
     one.style.backgroundColor = "rgba(0, 0, 0, 0.11)";
