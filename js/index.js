@@ -204,6 +204,7 @@ function swapValues(clickedID) {
         swapElements(elem1, elem2);
         if (checkIfAnswerMatched()) {
             console.log("won!!");
+            localStorage.clear();
             userWin();
         } else {
             document.getElementById("moves-count").textContent = ++count;
@@ -290,7 +291,6 @@ function checkIfAnswerMatched() {
 }
 
 function userWin() {
-    localStorage.clear();
     document.body.innerHTML = `<div id="winBox"><p id = "win">Congratulations!!</p>You won the Game</br><button id="button">Click to Continue</button></div>`;
     document.getElementById("win").style.cssText = `  
       font-size: 30px;
