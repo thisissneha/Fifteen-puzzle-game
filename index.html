@@ -10,7 +10,8 @@
 </head>
 
 <body>
-    <div class="game-wrapper-class">
+    <div id="continueGame"></div>
+    <div class="game-wrapper-class" id="game-wrapper-class">
         <header class="header-class">
             <section>
                 <ul class="list-styling">
@@ -18,7 +19,7 @@
                     <li class="time">Time<span class="timer" id="time">00:00</span></li>
                     <li class="start" id="start"><button class="btn">Start</button></li>
                     <li class="pause" id="pause"><button class="btn">Pause</button></li>
-                    <li class="reset" id="reset" onClick="window.location.reload();"><button class="btn">Reset</button>
+                    <li class="reset" id="reset" onClick="resetGame()"><button class="btn">Reset</button>
                     </li>
                 </ul>
             </section>
