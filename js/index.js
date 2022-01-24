@@ -34,7 +34,7 @@ function resumeGame() {
 if (!(localStorage.length === 0)) {
     document.getElementById("game-wrapper-class").style.display = "none";
 
-    document.getElementById("continueGame").innerHTML = `<div id="winBox">Do you wish to Continue?</br><button class = "button" id="startNewGame">Start New Game</button><button class = "button" id="resumeGame">Resume Game</button></div>`;
+    document.getElementById("continueGame").innerHTML = `<div id="optionBox">Do you wish to Continue?</br><button class = "button" id="startNewGame">Start New Game</button><button class = "button" id="resumeGame">Resume Game</button></div>`;
 
     document.getElementById("startNewGame").style.cssText = `  
     padding: 10px;
@@ -55,7 +55,7 @@ if (!(localStorage.length === 0)) {
     background-color: honeydew;
     `;
 
-    document.getElementById("winBox").style.cssText = `  
+    document.getElementById("optionBox").style.cssText = `  
     width: 56vw;
     height: 188px;
     margin: 116px auto;
