@@ -66,7 +66,7 @@ if (!(localStorage.length === 0)) {
     color: #222224;
     font-weight: 600;
     text-align: center;
-    padding: 30px 30px;
+    padding: 40px 30px;
     line-height: 3;
     `;
 
