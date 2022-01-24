@@ -58,7 +58,7 @@ if (!(localStorage.length === 0)) {
 
     document.getElementById("optionBox").style.cssText = `  
     width: 56vw;
-    height: 188px;
+    height: 16vh;
     margin: 116px auto;
     background-color: rgb(180 144 212 / 59%);
     border-radius: 10px;
@@ -66,8 +66,10 @@ if (!(localStorage.length === 0)) {
     color: #222224;
     font-weight: 600;
     text-align: center;
-    line-height: 4;
-      `;
+    padding: 30px 30px;
+    line-height: 3;
+    `;
+
 
     //   Start game EventListner
     document.getElementById("startNewGame").addEventListener('mouseover', function () {
