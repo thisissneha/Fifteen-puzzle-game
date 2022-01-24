@@ -151,3 +151,10 @@ body {
 .margin-bottom {
     margin-bottom: 14px;
 }
+
+
+@media screen and (max-width : 554px) {
+    #optionBox {
+        height: 26vh !important;
+    }
+}
