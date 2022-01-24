@@ -41,7 +41,7 @@ if (!(localStorage.length === 0)) {
     padding: 10px;
     background-color: #e5f6ee;
     border-radius: 10px;
-    margin: 0px 16px;
+    margin: 12px 16px;
     cursor: pointer;
     font-weight: 600;
     `;
@@ -50,7 +50,7 @@ if (!(localStorage.length === 0)) {
     document.getElementById("resumeGame").style.cssText = `  
     padding: 10px;
     border-radius: 10px;
-    margin: 0px 16px;
+    margin: 12px 16px;
     cursor: pointer;
     font-weight: 600;
     background-color: honeydew;
@@ -58,7 +58,6 @@ if (!(localStorage.length === 0)) {
 
     document.getElementById("optionBox").style.cssText = `  
     width: 56vw;
-    height: 16vh;
     margin: 116px auto;
     background-color: rgb(180 144 212 / 59%);
     border-radius: 10px;
@@ -67,7 +66,7 @@ if (!(localStorage.length === 0)) {
     font-weight: 600;
     text-align: center;
     padding: 40px 30px;
-    line-height: 3;
+    line-height: 2;
     `;
 
 
