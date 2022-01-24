@@ -153,8 +153,3 @@ body {
 }
 
 
-@media screen and (max-width : 554px) {
-    #optionBox {
-        height: 30vh !important;
-    }
-}
