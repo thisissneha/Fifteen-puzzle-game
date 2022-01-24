@@ -15,7 +15,7 @@ function resumeGame() {
     document.getElementById("moves-count").textContent = count;
 
     // resume the position of elements
-    let posElementMap = JSON.parse(localStorage.getItem('Position'));
+    let posElementMap = new Map(JSON.parse(localStorage.getItem('Position')));
 
     for (let [keyOfMap, valueOfMap] of posElementMap) {
         if (valueOfMap == "row-cell-0") {
@@ -26,6 +26,7 @@ function resumeGame() {
             document.getElementById(keyOfMap).innerHTML = `<div class="row-cell" id=${valueOfMap} onclick="swapValues(this.id)">${numberID.get(valueOfMap)}</div>`;
         }
     }
+    positionMap = new Map(JSON.parse(JSON.stringify(Array.from(posElementMap))));
 
 }
 
@@ -246,7 +247,7 @@ function swapElements(obj1, obj2) {
     for (let i = 0; i < cellElem.length; i++) {
         cellElem[i].style.backgroundColor = "rgba(0, 0, 0, 0.11)";
     }
-    console.log([...positionMap.entries()]);
+    // console.log([...positionMap.entries()]);
 }
 
 // check if user wins
