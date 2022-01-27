@@ -86,6 +86,7 @@ if (!(localStorage.length === 0)) {
         document.getElementById("continueGame").style.display = 'none';
         document.getElementById("game-wrapper-class").style.display = 'block';
         localStorage.clear();
+        // window.document.reload();
     });
 
 
@@ -203,8 +204,9 @@ function swapValues(clickedID) {
     if (validPosition(elem1, rowPosition, elem2.parentNode.id)) {
         swapElements(elem1, elem2);
         if (checkIfAnswerMatched()) {
-            console.log("won!!");
+            clearInterval(gameTime);
             localStorage.clear();
+            console.log("won!!");
             userWin();
         } else {
             document.getElementById("moves-count").textContent = ++count;
@@ -324,6 +326,7 @@ function userWin() {
         document.getElementById("button").style.color = "white";
         window.location.reload();
     });
+
 }
 
 
@@ -350,6 +353,9 @@ function resetGame() {
     timer = 0;
     clearInterval(gameTime);
     arrangeNumbersRandomly();
+    if (!isSolvable(gameElementArray)) {
+        window.location.reload();
+    }
 }
 
 
@@ -419,6 +425,7 @@ for (let i = 0; i < 4; i++) {
     }
     gameElementArray.push(data);
 }
+
 if (isSolvable(gameElementArray)) {
     console.log("is Solvable");
 } else {
@@ -455,37 +462,34 @@ function validPosition(position1, rowPosition, position2) {
 
 // to check if game is solvable or not
 
-function isSolvable(puzzle) {
-    let N = puzzle.length;
-    let invCount = getInvCount(puzzle);
+function isSolvable(gameElementArray) {
+    let parity = 0;
+    let gridWidth = 2;
+    let row = 0; // the current row we are on
+    let blankRow = 0; // the row with the blank tile
 
-    let pos = findXPosition(puzzle);
-    if (pos && 1)
-        return !(invCount && 1);
-    else
-        return invCount && 1;
-}
-
-function getInvCount(arr) {
-    let inv_count = 0;
-    let N = arr.length;
-    for (let i = 0; i < N * N - 1; i++) {
-        for (let j = i + 1; j < N * N; j++) {
-            if (arr[j] && arr[i] && arr[i] > arr[j]) {
-                inv_count++;
+    for (let i = 0; i < gameElementArray.length; i++) {
+        if (i % gridWidth == 0) { // advance to next row
+            row++;
+        }
+        if (gameElementArray[i] == 0) { // the blank tile
+            blankRow = row; // save the row on which encountered
+            continue;
+        }
+        for (let j = i + 1; j < gameElementArray.length; j++) {
+            if (gameElementArray[i] > gameElementArray[j] && gameElementArray[j] != 0) {
+                parity++;
             }
         }
     }
-    return inv_count;
-}
 
-function findXPosition(puzzle) {
-    let N = puzzle.length;
-    for (let i = N - 1; i >= 0; i--) {
-        for (let j = N - 1; j >= 0; j--) {
-            if (puzzle[i][j] == 0) {
-                return N - i;
-            }
+    if (gridWidth % 2 == 0) { // even grid
+        if (blankRow % 2 == 0) { // blank on odd row; counting from bottom
+            return parity % 2 == 0;
+        } else { // blank on even row; counting from bottom
+            return parity % 2 != 0;
         }
+    } else { // odd grid
+        return parity % 2 == 0;
     }
 }
