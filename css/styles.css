@@ -97,10 +97,11 @@ body {
     width: 84px;
     height: 75px;
     border-radius: 6px;
-    font-size: 30px;
+    font-size: 38px;
     text-align: center;
     line-height: 72px;
     cursor: pointer;
+    text-shadow: 3px 2px 3px #f7f7ee;
 }
 
 .game-instruction {
@@ -151,5 +152,3 @@ body {
 .margin-bottom {
     margin-bottom: 14px;
 }
-
-
