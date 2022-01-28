@@ -367,7 +367,6 @@ function userWin() {
 function changeCellColor() {
     for (let [key, value] of answerMap) {
         let valueOfpositionMap = positionMap.get(key);
-        console.log("value - " + valueOfpositionMap);
         if (valueOfpositionMap === value && valueOfpositionMap !== 'row-cell-0') {
             document.getElementById(valueOfpositionMap).style.backgroundColor = 'rgb(74 118 111)';
             document.getElementById(valueOfpositionMap).style.color = 'white';
