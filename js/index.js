@@ -87,7 +87,9 @@ if (!(localStorage.length === 0)) {
         document.getElementById("continueGame").style.display = 'none';
         document.getElementById("game-wrapper-class").style.display = 'block';
         localStorage.clear();
-        isSolvable(gameElementArray);
+        if (!isSolvable(gameElementArray)) {
+            window.location.reload();
+        }
     });
 
     //  Resume game Eventlistner
