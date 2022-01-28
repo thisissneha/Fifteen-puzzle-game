@@ -19,7 +19,7 @@ function resumeGame() {
 
     for (let [keyOfMap, valueOfMap] of posElementMap) {
         if (valueOfMap == "row-cell-0") {
-            document.getElementById(keyOfMap).style.backgroundColor = "rgba(0, 0, 0, 0.11)";
+            document.getElementById(keyOfMap).style.backgroundColor = "rgba(0, 0, 0, 0.04)";
             elemPosition = valueOfMap;
             document.getElementById(keyOfMap).innerHTML = `<div class="row-cell" id=${valueOfMap} onclick="swapValues(this.id)"></div>`;
         } else {
@@ -27,6 +27,7 @@ function resumeGame() {
         }
     }
     positionMap = new Map(JSON.parse(JSON.stringify(Array.from(posElementMap))));
+    changeCellColor();
 
 }
 
@@ -86,9 +87,8 @@ if (!(localStorage.length === 0)) {
         document.getElementById("continueGame").style.display = 'none';
         document.getElementById("game-wrapper-class").style.display = 'block';
         localStorage.clear();
-        // window.document.reload();
+        isSolvable(gameElementArray);
     });
-
 
     //  Resume game Eventlistner
     document.getElementById("resumeGame").addEventListener('mouseover', function () {
@@ -110,13 +110,41 @@ if (!(localStorage.length === 0)) {
 }
 
 
+// to check if game is solvable or not
+
+let isSolvable = puzzle => {
+    let parity = 0;
+    let gridWidth = 4;
+    let row = 0;
+    let blankRow = 0;
+    for (let i = 0; i < puzzle.length; i++) {
+        if (i % gridWidth == 0) {
+            row++;
+        }
+        if (puzzle[i] == 0) {
+            blankRow = row;
+            continue;
+        }
+        for (var j = i + 1; j < puzzle.length; j++) {
+            if (puzzle[i] > puzzle[j] && puzzle[j] != 0) {
+                parity++;
+            }
+        }
+    }
+
+    if (gridWidth % 2 == 0) {
+        if (blankRow % 2 == 0) {
+            return parity % 2 == 0;
+        } else {
+            return parity % 2 != 0;
+        }
+    } else {
+        return parity % 2 == 0;
+    }
+};
+
 
 // change color of cell
-let cellElem = document.getElementsByClassName("row-cell");
-for (let i = 0; i < cellElem.length; i++) {
-    cellElem[i].style.backgroundColor = "rgba(0, 0, 0, 0.11)";
-}
-
 document.getElementById("play").innerHTML = "PLAY";
 document.getElementById("play").style.cssText = `  
       display: block;
@@ -134,7 +162,7 @@ document.getElementById("pause").addEventListener("click", pauseGame);
 
 // Calculate Time taken by user
 let gameTime = null;
-var timer = 0;
+var timer = 1;
 let minutes, seconds;
 
 function startTimer(duration, display) {
@@ -161,7 +189,7 @@ function playGame() {
         cellElem[i].style.backgroundColor = "rgba(255, 255, 165, 1)";
     }
 
-    document.getElementById("row-cell-0").style.backgroundColor = "rgba(0, 0, 0, 0.11)";
+    document.getElementById("row-cell-0").style.backgroundColor = "rgba(0, 0, 0, 0.04)";
     document.getElementById("play").style.cssText = `  
       display: none;
     `;
@@ -170,8 +198,11 @@ function playGame() {
     let stopGame = document.getElementById("pause");
     startGame.style.display = "none";
     stopGame.style.display = "block";
+    changeCellColor();
+    window.localStorage.setItem('Position', JSON.stringify([...positionMap]));
     startTimer(timer, timeElement);
-};
+}
+
 
 // pause the time 
 function pauseGame() {
@@ -189,20 +220,22 @@ function pauseGame() {
     startGame.style.display = "block";
     stopGame.style.display = "none";
     clearInterval(gameTime);
+    changeCellColor();
 }
 
 
 // swap the values
 var count = 0;
-// let count = 0;
 
 function swapValues(clickedID) {
     let elem1 = document.getElementById(elemPosition);
     let elem2 = document.getElementById(clickedID);
 
     let rowPosition = document.getElementById(elemPosition).parentNode.getAttribute('pos');
+
     if (validPosition(elem1, rowPosition, elem2.parentNode.id)) {
         swapElements(elem1, elem2);
+        changeCellColor();
         if (checkIfAnswerMatched()) {
             clearInterval(gameTime);
             localStorage.clear();
@@ -223,20 +256,16 @@ function swapElements(obj1, obj2) {
     var temp = document.createElement("div");
     obj1.parentNode.insertBefore(temp, obj1);
 
-    // move obj1 to right before obj2
     obj2.parentNode.insertBefore(obj1, obj2);
 
-    // move obj2 to right before where obj1 used to be
     temp.parentNode.insertBefore(obj2, temp);
 
-    // remove temporary marker node
     temp.parentNode.removeChild(temp);
 
     // adding obj1 in map
     let key = obj1.parentNode.id;
     let value = obj1.id;
     positionMap.set(key, value);
-
 
     // adding obj2 in map
     let key1 = obj2.parentNode.id;
@@ -246,13 +275,13 @@ function swapElements(obj1, obj2) {
     window.localStorage.setItem('Position', JSON.stringify([...positionMap]));
 
     let one = document.getElementById("row-cell-0");
-    one.style.backgroundColor = "rgba(0, 0, 0, 0.11)";
+    one.style.backgroundColor = "rgba(0, 0, 0, 0.04)";
     let cellElem = document.getElementsByClassName("pos-row-cell");
     for (let i = 0; i < cellElem.length; i++) {
-        cellElem[i].style.backgroundColor = "rgba(0, 0, 0, 0.11)";
+        cellElem[i].style.backgroundColor = "rgba(0, 0, 0, 0.04)";
     }
-    // console.log([...positionMap.entries()]);
 }
+
 
 // check if user wins
 let answerMap = new Map([
@@ -293,7 +322,7 @@ function checkIfAnswerMatched() {
 }
 
 function userWin() {
-    document.body.innerHTML = `<div id="winBox"><p id = "win">Congratulations!!</p>You won the Game</br><button id="button">Click to Continue</button></div>`;
+    document.body.innerHTML = `<div id="winBox"><p id = "win">Congratulations!!</p>You won the Game in <strong>${count}</strong> moves.</br><button id="button">Click to Continue</button></div>`;
     document.getElementById("win").style.cssText = `  
       font-size: 30px;
       color: darkgreen;
@@ -327,6 +356,28 @@ function userWin() {
         window.location.reload();
     });
 
+}
+
+
+
+// change cell color if at correct position
+
+function changeCellColor() {
+    for (let [key, value] of answerMap) {
+        let valueOfpositionMap = positionMap.get(key);
+        console.log("value - " + valueOfpositionMap);
+        if (valueOfpositionMap === value && valueOfpositionMap !== 'row-cell-0') {
+            document.getElementById(valueOfpositionMap).style.backgroundColor = 'rgb(74 118 111)';
+            document.getElementById(valueOfpositionMap).style.color = 'white';
+            document.getElementById(valueOfpositionMap).style.textShadow = '1px 1px 2px #25282a';
+        } else if (valueOfpositionMap === 'row-cell-0') {
+            continue;
+        } else {
+            document.getElementById(valueOfpositionMap).style.backgroundColor = 'rgb(255, 255, 165)';
+            document.getElementById(valueOfpositionMap).style.color = 'black';
+            document.getElementById(valueOfpositionMap).style.textShadow = '3px 2px 3px #f7f7ee';
+        }
+    }
 }
 
 
@@ -392,7 +443,7 @@ function arrangeNumbersRandomly() {
         elementArray.push(`${numberID.get(randomElement)}`);
 
         if (randomElement == "row-cell-0") {
-            document.getElementById(pos).style.backgroundColor = "rgba(0, 0, 0, 0.11)";
+            document.getElementById(pos).style.backgroundColor = "rgba(0, 0, 0, 0.04)";
             elemPosition = randomElement;
             document.getElementById(pos).innerHTML = `<div class="row-cell" id=${randomElement} onclick="swapValues(this.id)"></div>`;
         } else {
@@ -410,9 +461,6 @@ function arrangeNumbersRandomly() {
 
 arrangeNumbersRandomly();
 
-let one = document.getElementById("row-cell-0");
-one.style.backgroundColor = "rgba(0, 0, 0, 0.11)";
-
 
 // creating 2D array and calling isSolvable function
 
@@ -427,9 +475,8 @@ for (let i = 0; i < 4; i++) {
 }
 
 if (isSolvable(gameElementArray)) {
-    console.log("is Solvable");
+    changeCellColor();
 } else {
-    console.log("Not Solvable");
     window.location.reload();
 }
 
@@ -455,41 +502,5 @@ function validPosition(position1, rowPosition, position2) {
         bottomElement != null && position2 === bottomElement.id) {
 
         return true;
-    }
-}
-
-
-
-// to check if game is solvable or not
-
-function isSolvable(gameElementArray) {
-    let parity = 0;
-    let gridWidth = 2;
-    let row = 0; // the current row we are on
-    let blankRow = 0; // the row with the blank tile
-
-    for (let i = 0; i < gameElementArray.length; i++) {
-        if (i % gridWidth == 0) { // advance to next row
-            row++;
-        }
-        if (gameElementArray[i] == 0) { // the blank tile
-            blankRow = row; // save the row on which encountered
-            continue;
-        }
-        for (let j = i + 1; j < gameElementArray.length; j++) {
-            if (gameElementArray[i] > gameElementArray[j] && gameElementArray[j] != 0) {
-                parity++;
-            }
-        }
-    }
-
-    if (gridWidth % 2 == 0) { // even grid
-        if (blankRow % 2 == 0) { // blank on odd row; counting from bottom
-            return parity % 2 == 0;
-        } else { // blank on even row; counting from bottom
-            return parity % 2 != 0;
-        }
-    } else { // odd grid
-        return parity % 2 == 0;
     }
 }
