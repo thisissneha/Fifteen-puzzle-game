@@ -87,9 +87,6 @@ if (!(localStorage.length === 0)) {
         document.getElementById("continueGame").style.display = 'none';
         document.getElementById("game-wrapper-class").style.display = 'block';
         localStorage.clear();
-        if (!isSolvable(gameElementArray)) {
-            window.location.reload();
-        }
     });
 
     //  Resume game Eventlistner
@@ -433,7 +430,7 @@ let numberID = new Map([
 ]);
 
 
-let elementArray = [];
+let gameElementArray = [];
 let elemPosition;
 
 function arrangeNumbersRandomly() {
@@ -441,7 +438,8 @@ function arrangeNumbersRandomly() {
     let positionArray = ["pos-1-1", "pos-1-2", "pos-1-3", "pos-1-4", "pos-2-1", "pos-2-2", "pos-2-3", "pos-2-4", "pos-3-1", "pos-3-2", "pos-3-3", "pos-3-4", "pos-4-1", "pos-4-2", "pos-4-3", "pos-4-4"]
     for (let pos of positionArray) {
         let randomElement = numberArray[Math.floor(Math.random() * numberArray.length)];
-        elementArray.push(`${numberID.get(randomElement)}`);
+
+        gameElementArray.push(`${numberID.get(randomElement)}`);
 
         if (randomElement == "row-cell-0") {
             document.getElementById(pos).style.backgroundColor = "rgba(0, 0, 0, 0.04)";
@@ -463,17 +461,7 @@ function arrangeNumbersRandomly() {
 arrangeNumbersRandomly();
 
 
-// creating 2D array and calling isSolvable function
-
-let indexOfArray = 0;
-let gameElementArray = [];
-for (let i = 0; i < 4; i++) {
-    let data = [];
-    for (let j = 0; j < 4; j++) {
-        data.push(elementArray[indexOfArray++]);
-    }
-    gameElementArray.push(data);
-}
+// Calling isSolvable function
 
 if (isSolvable(gameElementArray)) {
     changeCellColor();
