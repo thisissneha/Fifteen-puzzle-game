@@ -401,6 +401,7 @@ function resetGame() {
     stopGame.style.display = "none";
     timer = 0;
     clearInterval(gameTime);
+    window.localStorage.clear();
     arrangeNumbersRandomly();
     if (!isSolvable(gameElementArray)) {
         window.location.reload();
