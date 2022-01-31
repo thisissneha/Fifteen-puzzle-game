@@ -160,7 +160,7 @@ body {
 
 @media screen and (max-width: 510px) {
     .play {
-        top: calc(100vh - 104%);
+        top: 430px;
         left: 0;
         right: 0;
         bottom: 0;
