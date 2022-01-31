@@ -152,3 +152,35 @@ body {
 .margin-bottom {
     margin-bottom: 14px;
 }
+
+@media screen and (max-width: 510px) {
+    .game-wrapper-class {
+        margin: 0px;
+        width: 100%;
+    }
+
+    .game,
+    .play {
+        height: 300px;
+        width: 346px;
+    }
+
+    .play {
+        margin: 0px;
+    }
+
+    .game-row {
+        height: 62px;
+    }
+
+    .pos-row-cell,
+    .row-cell {
+        height: 64px;
+        width: 70px;
+    }
+
+    .row-cell {
+        font-size: 28px;
+        line-height: 2;
+    }
+}
