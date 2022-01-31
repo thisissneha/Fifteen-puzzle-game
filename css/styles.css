@@ -15,6 +15,10 @@ body {
     text-align: center;
 }
 
+#head1 {
+    display: none;
+}
+
 .game-wrapper-class {
     margin: auto;
     width: 524px;
@@ -49,7 +53,7 @@ body {
     background-color: black;
     height: 354px;
     width: 400px;
-    margin: 0px 34px;
+    margin: 0px 0.5em;
     padding: 6px 0px;
     border-radius: 10px;
     position: absolute;
@@ -153,7 +157,27 @@ body {
     margin-bottom: 14px;
 }
 
+@media screen and (min-width: 360px) and (max-width: 510px) {
+    .play {
+        margin: 0px 3vh;
+    }
+}
+
 @media screen and (max-width: 510px) {
+    .header-class {
+        justify-content: center;
+        margin-top: 26px;
+    }
+
+    #head1 {
+        display: block;
+        margin-top: 46px;
+    }
+
+    #head2 {
+        display: none;
+    }
+
     .game-wrapper-class {
         margin: 0px;
         width: 100%;
@@ -163,10 +187,6 @@ body {
     .play {
         height: 300px;
         width: 320px;
-    }
-
-    .play {
-        margin: 0px;
     }
 
     .game-row {
