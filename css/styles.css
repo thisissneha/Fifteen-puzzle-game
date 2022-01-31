@@ -162,7 +162,7 @@ body {
     .game,
     .play {
         height: 300px;
-        width: 346px;
+        width: 320px;
     }
 
     .play {
@@ -176,7 +176,7 @@ body {
     .pos-row-cell,
     .row-cell {
         height: 64px;
-        width: 70px;
+        width: 66px;
     }
 
     .row-cell {
