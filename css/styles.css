@@ -158,13 +158,15 @@ body {
     margin-bottom: 14px;
 }
 
-@media screen and (min-width: 360px) and (max-width: 510px) {
-    .play {
-        margin: 0px 3vh;
-    }
-}
-
 @media screen and (max-width: 510px) {
+    .play {
+        top: calc(100vh - 104%);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
     .header-class {
         justify-content: center;
         margin-top: 26px;
