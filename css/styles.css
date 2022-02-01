@@ -10,6 +10,26 @@ body {
     background-color: #f2f2ef;
 }
 
+#loading {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    text-align: center;
+    opacity: 1;
+    background-color: #fff;
+    z-index: 99;
+}
+
+#loading-image {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
 .font-size {
     font-size: 30px;
     text-align: center;
