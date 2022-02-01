@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <div id="loading">
+        <img id="loading-image" src="img/loader.gif" alt="Loading..." />
+    </div>
     <div id="continueGame"></div>
     <div class="game-wrapper-class" id="game-wrapper-class">
         <section class="heading" id="head1">
@@ -36,9 +39,9 @@
                 </h2>
             </section>
         </header>
-        <section class="play-box">
+        <section class="play-box" id="play-box">
             <div class="play" id="play" onclick="playGame()"></div>
-            <div class="game">
+            <div class="game" id="game">
 
                 <div class="game-row">
                     <div class="pos-row-cell" id="pos-1-1" pos="1">
