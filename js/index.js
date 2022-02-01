@@ -1,3 +1,9 @@
+// Page reload function
+window.onload = function () {
+    document.getElementById("loading").style.display = "none"
+};
+
+
 // if local storage is not empty - resume the game
 function resumeGame() {
 
@@ -110,7 +116,6 @@ if (!(localStorage.length === 0)) {
 
 
 // to check if game is solvable or not
-
 let isSolvable = puzzle => {
     let parity = 0;
     let gridWidth = 4;
@@ -383,6 +388,13 @@ function changeCellColor() {
 // reset the Game on reset button
 
 function resetGame() {
+    timer = 0;
+    clearInterval(gameTime);
+    window.localStorage.clear();
+    arrangeNumbersRandomly();
+    if (!isSolvable(gameElementArray)) {
+        window.location.reload();
+    }
     count = 0;
     document.getElementById("moves-count").textContent = count;
     document.getElementById('time').textContent = `00:00`;
@@ -399,13 +411,6 @@ function resetGame() {
     let stopGame = document.getElementById("pause");
     startGame.style.display = "block";
     stopGame.style.display = "none";
-    timer = 0;
-    clearInterval(gameTime);
-    window.localStorage.clear();
-    arrangeNumbersRandomly();
-    if (!isSolvable(gameElementArray)) {
-        window.location.reload();
-    }
 }
 
 
